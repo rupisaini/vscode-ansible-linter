@@ -95,18 +95,17 @@ function validateAnsibleFile(document: TextDocument): void {
 	});
 
 	let diagnostics: Diagnostic[] = [];
+	let filename = uri.toString()
 
 	child.stdout.on("data", (data: Buffer) => {
 		let tmp = data.toString();
 		const lint_regex = /(.*):(\d+).*ANSIBLE\d{4}\]\s(.*)/;
-		let filename = uri.toString()
 		tmp.split(/\r?\n/).forEach(function (line) {
 			let start = 0;
 			let end = Number.MAX_VALUE;
 			const lint_matches = lint_regex.exec(line);
 
 			if (lint_matches) {
-
 				if (filename != 'file://' + lint_matches[1]) {
 					connection.sendDiagnostics({ uri: filename, diagnostics });
 					diagnostics = new Array<Diagnostic>();
@@ -123,15 +122,14 @@ function validateAnsibleFile(document: TextDocument): void {
 					message: lint_matches[3]
 				};
 				diagnostics.push(diagnostic);
+				//connection.console.log(`${lint_matches[3]}(${lint_matches[2]}): ${lint_matches[3]}`);
 			}
-
 		});
-		connection.sendDiagnostics({ uri: filename, diagnostics });
 	});
 
 	child.on("close", (code: string) => {
 		connection.console.log(`Validation finished for(code:${code}): ${uri}`);
-		connection.sendDiagnostics({ uri, diagnostics });
+		connection.sendDiagnostics({ uri: filename, diagnostics });
 		isValidating[uri] = false;
 	});
 }
