@@ -94,9 +94,10 @@ function validateAnsibleFile(document: TextDocument): void {
 		connection.window.showErrorMessage(`An error occured while validating file: ${Files.uriToFilePath(document.uri)}`);
 	});
 
+	let diagnostics: Diagnostic[] = [];
+
 	child.stdout.on("data", (data: Buffer) => {
 		let tmp = data.toString();
-		let diagnostics: Diagnostic[] = [];
 		const lint_regex = /(.*):(\d+).*ANSIBLE\d{4}\]\s(.*)/;
 		let filename = uri.toString()
 		tmp.split(/\r?\n/).forEach(function (line) {
@@ -128,7 +129,9 @@ function validateAnsibleFile(document: TextDocument): void {
 		connection.sendDiagnostics({ uri: filename, diagnostics });
 	});
 
-	child.on("close", () => {
+	child.on("close", (code: string) => {
+		connection.console.log(`Validation finished for(code:${code}): ${uri}`);
+		connection.sendDiagnostics({ uri, diagnostics });
 		isValidating[uri] = false;
 	});
 }
