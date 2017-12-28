@@ -86,6 +86,8 @@ function validateAnsibleFile(document: TextDocument): void {
 
 	let args = `-p --nocolor ${Files.uriToFilePath(uri)}`;
 
+	connection.console.log(`running............. ${cmd} ${args}`);
+
 	let child = spawn(cmd, args.split(" "));
 
 	child.stderr.on("data", (data: Buffer) => {
@@ -128,7 +130,7 @@ function validateAnsibleFile(document: TextDocument): void {
 	});
 
 	child.on("close", (code: string) => {
-		connection.console.log(`Validation finished for(code:${code}): ${uri}`);
+		connection.console.log(`Validation finished for(code:${code}): ${Files.uriToFilePath(uri)}`);
 		connection.sendDiagnostics({ uri: filename, diagnostics });
 		isValidating[uri] = false;
 	});
