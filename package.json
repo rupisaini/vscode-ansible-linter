@@ -1,10 +1,10 @@
 {
-	"name": "lsp--sample",
-	"description": "A language server example",
-	"author": "Microsoft Corporation",
+    "name": "vscode-ansible-linter",
+	"description": "Ansible linter",
+	"author": "Rupi Saini",
 	"license": "MIT",
 	"version": "0.0.1",
-	"publisher": "vscode",
+	"publisher": "",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/rupisaini/vscode-ansible-linter.git"

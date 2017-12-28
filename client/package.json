@@ -1,13 +1,13 @@
 {
-	"name": "lsp-sample",
-	"description": "VSCode part of a language server",
-	"author": "Microsoft Corporation",
+	"name": "vscode-ansible-linter",
+	"description": "Ansible Linter Client",
+	"author": "Rupi Saini",
 	"license": "MIT",
 	"version": "0.0.1",
-	"publisher": "vscode",
+	"publisher": "",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "https://github.com/rupisaini/vscode-ansible-linter.git"
 	},
 	"engines": {
 		"vscode": "^1.16.0"
@@ -16,7 +16,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onLanguage:plaintext"
+		"onLanguage:ansible"
 	],
 	"main": "./out/src/extension",
 	"contributes": {
@@ -24,13 +24,13 @@
 			"type": "object",
 			"title": "Example configuration",
 			"properties": {
-				"lspSample.maxNumberOfProblems": {
+				"ansible-linter.maxNumberOfProblems": {
 					"scope": "resource",
 					"type": "number",
 					"default": 100,
 					"description": "Controls the maximum number of problems produced by the server."
 				},
-				"lspSample.trace.server": {
+				"ansible-linter.trace.server": {
 					"scope": "window",
 					"type": "string",
 					"enum": [
