@@ -24,13 +24,13 @@
 			"type": "object",
 			"title": "Example configuration",
 			"properties": {
-				"ansible-linter.maxNumberOfProblems": {
+				"ansibleLinter.maxNumberOfProblems": {
 					"scope": "resource",
 					"type": "number",
-					"default": 100,
+					"default": 80,
 					"description": "Controls the maximum number of problems produced by the server."
 				},
-				"ansible-linter.trace.server": {
+				"ansibleLinter.trace.server": {
 					"scope": "window",
 					"type": "string",
 					"enum": [
