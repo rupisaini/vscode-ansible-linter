@@ -1,5 +1,5 @@
 {
-    "name": "vscode-ansible-linter",
+	"name": "vscode-ansible-linter",
 	"description": "Ansible linter",
 	"author": "Rupi Saini",
 	"license": "MIT",
