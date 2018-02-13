@@ -84,9 +84,14 @@ function validateAnsibleFile(document: TextDocument): void {
 
 	let cmd = "ansible-lint"
 
-	let args = `-p --nocolor ${Files.uriToFilePath(uri)}`;
+	let file_to_lint = Files.uriToFilePath(uri)
+	if(file_to_lint.search(/\/tasks\//i) !== -1){
+		file_to_lint = file_to_lint.substr(0,(file_to_lint.search(/\/tasks\//i)))
+	}
 
-	//connection.console.log(`running............. ${cmd} ${args}`);
+	let args = `-p --nocolor ${file_to_lint}`;
+
+	connection.console.log(`running............. ${cmd} ${args}`);
 
 	let child = spawn(cmd, args.split(" "));
 
@@ -98,14 +103,14 @@ function validateAnsibleFile(document: TextDocument): void {
 	child.stderr.on("data", (data: Buffer) => {
 		let err = data.toString();
 		connection.console.log(err);
-		let lineNumber = 1
+		let lineNumber = 0
 		let diagnostic: Diagnostic = {
 			range: {
 				start: { line: lineNumber, character: start },
 				end: { line: lineNumber, character: end }
 			},
 			severity: DiagnosticSeverity.Warning,
-			message: "An error occured while validating ansible:" + err
+			message: err
 		};
 		diagnostics.push(diagnostic);
 	});
