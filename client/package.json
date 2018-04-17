@@ -1,9 +1,9 @@
 {
-    "name": "Ansible Linter",
+    "name": "vscode-ansible-linter",
     "description": "Ansible Linter",
     "author": "Rupi Saini",
     "license": "MIT",
-    "version": "0.3.0",
+    "version": "0.5.0",
     "publisher": "rupisaini",
     "repository": {
         "type": "git",
