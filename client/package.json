@@ -3,7 +3,7 @@
     "description": "Ansible Linter",
     "author": "Rupi Saini",
     "license": "MIT",
-    "version": "0.5.0",
+    "version": "0.7.0",
     "publisher": "rupisaini",
     "repository": {
         "type": "git",
@@ -16,7 +16,8 @@
         "Other"
     ],
     "activationEvents": [
-        "onLanguage:ansible"
+        "onLanguage:ansible",
+        "onLanguage:yaml"
     ],
     "main": "./out/src/extension",
     "scripts": {

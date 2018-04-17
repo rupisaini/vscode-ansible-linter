@@ -26,7 +26,7 @@ export function activate(context: ExtensionContext) {
 	// Options to control the language client
 	let clientOptions: LanguageClientOptions = {
 		// Register the server for plain text documents
-		documentSelector: [{scheme: 'untitled', language: 'ansible'}, {scheme: 'file', language: 'yaml'}],
+		documentSelector: [{scheme: 'file', language: 'ansible'}, {scheme: 'file', language: 'yaml'}],
 		synchronize: {
 			// Synchronize the setting section 'languageServerExample' to the server
 			configurationSection: 'ansibleLinter',
