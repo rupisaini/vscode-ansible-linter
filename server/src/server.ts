@@ -89,7 +89,7 @@ function validateAnsibleFile(document: TextDocument): void {
 		file_to_lint = file_to_lint.substr(0,(file_to_lint.search(/\/tasks\//i)))
 	}
 
-	let args = `-p --nocolor ${file_to_lint}`;
+	let args = ["-p", "--nocolor", file_to_lint];
 
 	connection.console.log(`running............. ${cmd} ${args}`);
 
