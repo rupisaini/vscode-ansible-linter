@@ -93,7 +93,7 @@ function validateAnsibleFile(document: TextDocument): void {
 
 	connection.console.log(`running............. ${cmd} ${args}`);
 
-	let child = spawn(cmd, args.split(" "));
+	let child = spawn(cmd, args);
 
 	let diagnostics: Diagnostic[] = [];
 	let filename = uri.toString()
