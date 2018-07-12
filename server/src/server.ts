@@ -2,6 +2,7 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
+// cSpell:words ansible
 'use strict';
 
 import {
@@ -49,6 +50,10 @@ documents.onDidOpen((event) => {
 	validateAnsibleFile(event.document);
 });
 
+documents.onDidClose((event) => {
+	let diagnostics: Diagnostic[] = [];
+	connection.sendDiagnostics({ uri: event.document.uri.toString(), diagnostics });
+});
 // The settings interface describe the server relevant settings part
 interface Settings {
 	ansibleLinter: ansibleLinterSettings;
@@ -85,10 +90,11 @@ function validateAnsibleFile(document: TextDocument): void {
 	let cmd = "ansible-lint"
 
 	let file_to_lint = Files.uriToFilePath(uri)
-	if(file_to_lint.search(/\/tasks\//i) !== -1){
-		file_to_lint = file_to_lint.substr(0,(file_to_lint.search(/\/tasks\//i)))
+	if (file_to_lint.search(/\/tasks\//i) !== -1) {
+		file_to_lint = file_to_lint.substr(0, (file_to_lint.search(/\/tasks\//i)))
 	}
 
+	// cSpell:ignore nocolor
 	let args = ["-p", "--nocolor", file_to_lint];
 
 	connection.console.log(`running............. ${cmd} ${args}`);
@@ -99,7 +105,7 @@ function validateAnsibleFile(document: TextDocument): void {
 	let filename = uri.toString()
 	let start = 0;
 	let end = Number.MAX_VALUE;
-	
+
 	child.stderr.on("data", (data: Buffer) => {
 		let err = data.toString();
 		connection.console.log(err);
