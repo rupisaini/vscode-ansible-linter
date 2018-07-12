@@ -3,7 +3,7 @@
     "description": "Ansible Linter",
     "author": "Rupi Saini",
     "license": "MIT",
-    "version": "0.9.0",
+    "version": "0.10.0",
     "publisher": "rupisaini",
     "repository": {
         "type": "git",
