@@ -119,7 +119,7 @@ function validateAnsibleFile(document: TextDocument): void {
 
 	child.stdout.on("data", (data: Buffer) => {
 		let tmp = data.toString();
-		const lint_regex = /(.*):(\d+).*ANSIBLE\d{4}\]\s(.*)/;
+		const lint_regex = /(.*):(\d+).*[ANSIBL]*E\d{3,4}\]\s(.*)/;
 		tmp.split(/\r?\n/).forEach(function (line) {
 
 			const lint_matches = lint_regex.exec(line);
