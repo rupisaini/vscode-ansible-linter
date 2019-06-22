@@ -3,8 +3,11 @@
 	"description": "Ansible linter",
 	"author": "Rupi Saini",
 	"license": "MIT",
-	"version": "0.4.0",
-	"publisher": "",
+	"version": "0.13.0",
+	"publisher": "rupisaini",
+	"engines": {
+		"vscode": "^1.30.x"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/rupisaini/vscode-ansible-linter.git"
